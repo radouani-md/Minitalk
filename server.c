@@ -1,10 +1,18 @@
-#include <signal.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   server.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mradouan <mradouan@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/06 07:00:51 by mradouan          #+#    #+#             */
+/*   Updated: 2025/03/06 07:06:40 by mradouan         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int power_of_2(int exp)
+#include "minitalk.h"
+
+int power_of_two(int exp)
 {
 	int result;
 
@@ -34,7 +42,7 @@ void handle_signal(int sig, siginfo_t *info, void *context)
 		pid = info->si_pid;
 	}
 	if (sig == SIGUSR1)
-		current_char += power_of_2(bit_index);
+		current_char += power_of_two(bit_index);
 	bit_index++;
 	if (bit_index == 8)
 	{

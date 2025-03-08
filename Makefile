@@ -1,6 +1,10 @@
-NAME = push_swap
+NAME = server	
 
-NAME_BNS = checker
+NAME2 = client
+
+NAME_BNS = server_bonus
+
+NAME2_BNS = client_bonus
 
 CC = cc
 
@@ -8,41 +12,55 @@ CFLAGS = -Wall -Wextra -Werror
 
 BONS = bonuses
 
-SRC = md_utils.c push_swap.c parsing.c md_split.c free_data.c lst_functions.c md_opr_s.c \
-	md_opr_b.c md_opr_r.c sort_three_five.c roud_to_algo.c utils_of_algo.c function_norm.c \
+SRC_SERVER = server.c
 
-SRC_BONUS = $(BONS)/md_utils_bonus.c $(BONS)/md_split_bonus.c $(BONS)/parsing_bonus.c $(BONS)/lst_functions_bonus.c \
-	$(BONS)/checker_bonus.c $(BONS)/free_data_bonus.c $(BONS)/read_and_put_bonus.c $(BONS)/get_next_line_bonus.c $(BONS)/get_next_line_utils_bonus.c \
-	$(BONS)/md_opr_b_bonus.c $(BONS)/md_opr_r_bonus.c $(BONS)/md_opr_s_bonus.c $(BONS)/after_read_bonus.c $(BONS)/function_norm_bonus.c \
+SRC_CLIENT = client.c 	
 
-OBJ = $(SRC:.c=.o)
+SRC_SERVER_BNS = $(BONS)/server_bonus.c $(BONS)/utils_bonus.c
 
-OBJ_BONUS = ${SRC_BONUS:.c=.o}
+SRC_CLIENT_BNS = $(BONS)/client_bonus.c 
 
-HEADER = push_swap.h
+OBJ_SERVER = $(SRC_SERVER:.c=.o)
 
-HEADER_BNS = bonuses/checker_bonus.h
+OBJ_CLIENT = $(SRC_CLIENT:.c=.o)
 
-all: $(NAME)
+OBJ_BNS_SERVER = $(SRC_SERVER_BNS:.c=.o)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+OBJ_BNS_CLIENT = $(SRC_CLIENT_BNS:.c=.o)
 
-bonus: ${NAME_BNS}
 
-$(NAME_BNS): $(OBJ_BONUS)
-	${CC} $(CFLAGS) ${OBJ_BONUS} -o $(NAME_BNS)
+HEADER = minitalk.h
+
+HEADER_BNS = minitalk_bonus.h
+
+all: $(NAME) $(NAME2)
+
+bonus: $(NAME_BNS) $(NAME2_BNS)
+
+$(NAME): $(OBJ_SERVER)
+	$(CC) $(CFLAGS) $(OBJ_SERVER) -o $(NAME)
+
+$(NAME2): $(OBJ_CLIENT)
+	$(CC) $(CFLAGS) $(OBJ_CLIENT) -o $(NAME2)
+
+$(NAME_BNS): $(OBJ_BNS_SERVER)
+	$(CC) $(CFLAGS) $(OBJ_BNS_SERVER) -o $(NAME_BNS)
+
+$(NAME2_BNS): $(OBJ_BNS_CLIENT)
+	$(CC) $(CFLAGS) $(OBJ_BNS_CLIENT) -o $(NAME2_BNS)
+
 
 %.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BONS)/%.o: $(BONS)/%.c $(HEADER_BNS)
+$(BNS)/%.o: $(BNS)/%.c $(HEADER_BNS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+
 clean:
-	rm -f $(OBJ) ${OBJ_BONUS}
+	rm -f $(OBJ_SERVER) $(OBJ_CLIENT) $(OBJ_BNS_CLIENT) $(OBJ_BNS_SERVER) 
 
 fclean: clean
-	rm -f $(NAME) $(NAME_BNS)
+	rm -f $(NAME2) $(NAME) $(NAME2_BNS) $(NAME_BNS)
 
-re: fclean allv
+re: fclean all
