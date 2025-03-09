@@ -12,11 +12,11 @@ CFLAGS = -Wall -Wextra -Werror
 
 BONS = bonuses
 
-SRC_SERVER = server.c
+SRC_SERVER = server.c print_funcs.c utils.c
 
 SRC_CLIENT = client.c 	
 
-SRC_SERVER_BNS = $(BONS)/server_bonus.c $(BONS)/utils_bonus.c
+SRC_SERVER_BNS = $(BONS)/server_bonus.c $(BONS)/utils_bonus.c $(BONS)/print_funcs_bonus.c
 
 SRC_CLIENT_BNS = $(BONS)/client_bonus.c 
 
