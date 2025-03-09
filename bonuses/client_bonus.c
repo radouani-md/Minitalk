@@ -6,7 +6,7 @@
 /*   By: mradouan <mradouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 07:01:19 by mradouan          #+#    #+#             */
-/*   Updated: 2025/03/09 14:42:06 by mradouan         ###   ########.fr       */
+/*   Updated: 2025/03/09 16:01:39 by mradouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,17 @@ int	main(int argc, char **argv)
 	struct sigaction	sa;
 	char				*msg;
 
+	if (argc != 3)
+		return (write(2, "Syntax: ./client <server_pid> <message>\n", 40), 1);
 	g_server_pid = md_atoi(argv[1]);
+	if (g_server_pid <= 0)
+		return (write(2, "Error\nPID prb\n", 14), 1);
 	sa.sa_flags = SA_SIGINFO;
 	sa.__sigaction_u.__sa_sigaction = treat_back;
 	sigemptyset(&sa.sa_mask);
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 		return (write(2, "Error\nSEGACTION", 15), 1);
-	if (argc != 3)
-		return (write(2, "Syntax: ./client <server_pid> <message>\n", 40), 1);
 	i = 0;
-	if (argv[1] <= 0)
-		return (write(2, "Error\n PID prb", 14), 1);
 	msg = argv[2];
 	while (msg[i])
 	{

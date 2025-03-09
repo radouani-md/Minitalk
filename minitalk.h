@@ -6,7 +6,7 @@
 /*   By: mradouan <mradouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 06:56:14 by mradouan          #+#    #+#             */
-/*   Updated: 2025/03/09 15:09:59 by mradouan         ###   ########.fr       */
+/*   Updated: 2025/03/09 15:23:01 by mradouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINITALK_H
 
 # include <signal.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 

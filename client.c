@@ -6,7 +6,7 @@
 /*   By: mradouan <mradouan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 07:01:19 by mradouan          #+#    #+#             */
-/*   Updated: 2025/03/09 15:13:20 by mradouan         ###   ########.fr       */
+/*   Updated: 2025/03/09 15:37:14 by mradouan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,12 @@ int	main(int argc, char **argv)
 	pid_t		server_pid;
 
 
-	server_pid = md_atoi(argv[1]);
 	if (argc != 3)
 		return (write(2, "Syntax: ./client <server_pid> <message>\n", 40), 1);
 	i = 0;
-	if (argv[1] <= 0)
-		return (write(2, "Error\n PID prb", 14), 1);
+	server_pid = md_atoi(argv[1]);
+	if (server_pid <= 0)
+		return (write(2, "Error\nPID prb\n", 14), 1);
 	msg = argv[2];
 	while (msg[i])
 	{
